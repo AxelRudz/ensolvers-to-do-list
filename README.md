@@ -5,7 +5,7 @@
 
 
 ## Requirements
-In order to run the app is required:
+In order to run the app are required:
 - Python 3.8.5
 - Virtualenv (pip version 21.0.1)
 - MariaDB - 10.4.17  
