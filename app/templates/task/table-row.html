@@ -1,0 +1,34 @@
+<tr>
+  <td class="align-middle">
+    {% if task.checked == true %}
+      <input type="checkbox" onclick="toggle_check('/task-check','{{task.id}}',this);" checked>
+    {% else %}
+      <input type="checkbox" onclick="toggle_check('/task-check','{{task.id}}',this);">
+    {% endif %}
+  </td>
+
+  <td class="align-middle">{{task.name}}</td>
+
+  <td>
+    <div class="btn-group" role="group" aria-label="Basic example">
+
+      <button 
+        class="btn btn-primary btn-edit mr-1" 
+        type="button" 
+        data-toggle="modal"  
+        data-target="#modal-update-task" 
+        data-id="{{task.id}}" 
+        data-name="{{task.name}}">
+          Edit
+      </button>
+
+      <form action="{{url_for('task-delete')}}" method="POST">
+        <input type="hidden" name="id_task" value="{{task.id}}"/>
+        <button type="submit" class="btn btn-danger">
+          Delete
+        </button>
+      </form>
+
+    </div>
+  </td>
+</tr>

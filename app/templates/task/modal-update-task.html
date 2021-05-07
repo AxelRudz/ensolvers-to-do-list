@@ -1,0 +1,29 @@
+<div class="modal fade" id="modal-update-task" tabindex="-1" aria-labelledby="modal-update-task-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-update-task-label">Edit task</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form action="{{url_for('task-update')}}" method="POST">
+          <input type="hidden" name="id_folder" value="{{id_folder}}"/>
+          <input type="hidden" name="id_task"/>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="task_name">Task name</label>
+              <input type="text" class="form-control" name="task_name" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Edit task</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+         
+      </div>
+    </div>
+  </div>

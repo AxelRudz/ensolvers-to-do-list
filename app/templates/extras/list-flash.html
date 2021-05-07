@@ -1,0 +1,19 @@
+<div id="list-flash" class="text-centered">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+          {% if category == "error" %}
+            <div class="alert alert-danger flash-alert" role="alert">
+              {{ message }}
+              <span class="btn-close-alert" onclick="hide_parent(this)"><i class="fas fa-times"></i></span>
+            </div>
+          {% else %}
+            <div class="alert alert-success flash-alert" role="alert">
+              {{ message }}
+              <span class="btn-close-alert" onclick="hide_parent(this)"><i class="fas fa-times"></i></span>
+            </div>
+          {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>

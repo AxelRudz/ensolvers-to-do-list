@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}To-Do list - Home{% endblock %}
+{% block head %}
+  {{ super() }}
+  
+  <style>
+    #main-section {
+      color: white; 
+      text-align: center;
+      margin-top: 140px;
+    }
+    
+    .btn-green-custom {
+      font-size: larger;
+      padding: 20px 40px;
+      margin-top: 50px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 1px 1px 10px rgba(0,0,0,0.4);
+    }
+  </style>
+
+{% endblock %}
+
+{% block content %}
+  <section id="main-section">
+    
+    <h1>To-Do List</h1>
+
+    {% if not is_authenticated(session)%}
+      <h2>Log in to start!</h2>
+      <button type="button" class="btn btn-success btn-green-custom" data-toggle="modal" data-target="#modal-login">
+        <i class="fas fa-sign-in-alt"></i> Click to log in
+      </button>
+    {% else %}
+      <h2>You are logged in!</h2>
+      <a href="{{url_for('user-main-menu')}}">
+        <button class="btn btn-success btn-green-custom" type="button">
+          <i class="fas fa-folder-open"></i> Go to your folders
+        </button>
+      </a>
+    {% endif %}
+
+  </section>
+{% endblock %}

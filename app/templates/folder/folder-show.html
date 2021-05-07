@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+{% block title %}{{session['user'].username}} - {{folder.name}}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style>
+
+    #main-section {
+      background-color: rgba(0,0,0,0.2); 
+      padding: 20px; 
+      border-radius: 10px;
+    }
+
+    #tasks-table {
+      max-width: 500px;
+      text-align: center;
+      border-radius: 10px;
+      margin: 0px auto;
+    }
+
+    #tasks-table th {
+      border: none;
+    }
+
+    #tasks-table .th-left {
+      border-radius: 10px 0px 0px 0px;
+    }
+
+    #tasks-table .th-right {
+      border-radius: 0px 10px 0px 0px;
+    }
+
+    #tasks-table .btn-group button{
+      border-radius: 5px;
+    }
+
+    #tasks-table input[type=checkbox] {
+      transform: scale(1.5);
+    }
+
+  </style>
+{% endblock %}
+{% block content %}
+  <div style="padding: 50px 0px;">
+
+    <section id="main-section">
+      
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{url_for('user-main-menu')}}">Folders</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{folder.name}}</li>
+        </ol>
+      </nav>
+
+      {% if not tasks %}
+        <h1 class="text-centered text-white" style="margin: 50px auto;">
+          The list is empty
+        </h1>
+      {% else %}
+        <div class="table-responsive">
+          <table id="tasks-table" class="table table-striped bg-white">
+            <thead class="bg-dark text-white" style="padding: 0px;">
+              <tr>
+                <th class="th-left">Done</th>
+                <th>Task</th>
+                <th class="th-right">Settings</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for task in tasks %}
+                {% include "task/table-row.html" %}
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+
+      <button class="btn btn-success btn-add-folder-task" type="button" data-toggle="modal" data-target="#modal-create-task">
+        <i class="fas fa-plus-square"></i> Add task
+      </button>
+      
+    </section>
+  </div>
+
+  {% with id_folder=folder.id %}
+    {% include "task/modal-create-task.html" %}
+    {% include "task/modal-update-task.html" %}
+  {% endwith %}
+
+  <script>
+    $('#modal-update-task').on('show.bs.modal', function(e) {
+      var id_task = $(e.relatedTarget).data('id');
+      var task_name = $(e.relatedTarget).data('name');
+      $(e.currentTarget).find('input[name="id_task"]').val(id_task);
+      $(e.currentTarget).find('input[name="task_name"]').val(task_name);
+    });
+  </script>
+{% endblock %}

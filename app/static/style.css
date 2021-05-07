@@ -1,0 +1,27 @@
+body {
+  background: url("./img/background.jpg") fixed no-repeat;
+  background-size: cover;
+}
+
+.text-centered {
+  text-align: center;
+}
+
+.flash-alert {
+  border-radius: 0px; 
+  border-top: 1px solid rgba(0, 0, 0, 0.1); 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3); 
+}
+
+.btn-add-folder-task {
+  display: block;
+  margin: 20px auto;
+  font-size: larger;
+  width: fit-content;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.4);
+}
+
+.btn-close-alert {
+  margin-left: 20px;
+  cursor: pointer;
+}
